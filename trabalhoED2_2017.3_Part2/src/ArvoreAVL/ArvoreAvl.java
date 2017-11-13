@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ArvoreAVL;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Scanner;
+import splaytree.SplayTree;
+import trabalhoii.BuscaTuite;
+import trabalhoii.Tuite;
 
 /**
  *
@@ -56,7 +55,7 @@ public class ArvoreAvl {
 				}
 
 			} else {
-				// O nÃ³ jÃ¡ existe
+				//O nó já existe
 			}
 		}
                 
@@ -105,12 +104,15 @@ public class ArvoreAvl {
 
 			if (atual.getChave().compareTo(k)>= 1) {
 				removerAVL(atual.getEsquerda(), k);
+                              
 
 			} else if (atual.getChave().compareTo(k)<= -1) {
 				removerAVL(atual.getDireita(), k);
+                               
 
 			} else if (atual.getChave().compareTo(k)== 0) {
 				removerNoEncontrado(atual);
+                                System.out.println("Removido : " + atual.getChave());
 			}
 		}
 	}
@@ -155,7 +157,8 @@ public class ArvoreAvl {
 		}
 		r = null;
 	}
-
+        
+        
 	public No rotacaoEsquerda(No inicial) {
 
 		No direita = inicial.getDireita();
@@ -285,9 +288,68 @@ public class ArvoreAvl {
 	}
         
         
-        public void imprimirAVL(ArrayList<No> nos)
-        {
+              
+        public void buscar(ArrayList<Tuite> lista)
+        { 
+            ArvoreAVL.ArvoreAvl avl = new ArvoreAVL.ArvoreAvl();
+            BuscaTuite busca = new BuscaTuite(avl, lista);
         
+      
+         
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("Linha " + i + " \n" + lista.get(i).imprime() + "\n");
+            avl.inserir(lista.get(i).getTweetID());
         
         }
+
+
+        if (avl != null) {
+            Scanner entrada = new Scanner(System.in);
+            int aux = -1;
+            do {
+                System.out.println("Escolha: 0 p/ sair");
+                System.out.println("\t 1 - Busca por tweetID");
+                System.out.print("Digite a opção desejada: ");
+                aux = entrada.nextInt();
+                switch (aux) {
+                    case 1:
+                        String usID = "";
+                    case 2:
+                        BigInteger ttID;
+                        System.out.print("Digite o tweetID a ser buscado: ");
+                        ttID = entrada.nextBigInteger();
+                        System.out.println("\n" + avl.procuraElementoTweetID(ttID) + "\n");
+                        break;
+                  
+                    default:
+                        if (aux == 0) {
+                            System.out.println("Saindo....");
+                        } else {
+                            System.out.println("Opção não reconhecida.");
+                        }
+                }
+            } while (aux != 0);
+        }}
+        
+         public String procuraElementoTweetID(BigInteger chave){
+        if(procuraChave(chave) != null){
+            return "Tweet Encontrado!";
+        }else{
+            return "Não encontrado";
+        }
+    }
+
+    private No procuraChave(BigInteger chave) {
+      No a = raiz;
+      while(a != null){
+          if(chave.compareTo(a.getChave()) == -1)
+              a = a.getDireita();
+          else if(chave.compareTo(a.getChave()) == 1)
+              a = a.getEsquerda();
+          else
+              return a;
+      }
+      return null;
+    }
+               
 }

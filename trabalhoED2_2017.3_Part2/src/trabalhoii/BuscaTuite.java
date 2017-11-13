@@ -16,12 +16,24 @@ import splaytree.SplayTree;
 public class BuscaTuite {
     private SplayTree k = new SplayTree();
     private ArrayList<Tuite> listaAux = new ArrayList<>();
+    private Rubro_Negra.RubroNegra k2 = new Rubro_Negra.RubroNegra();
+    private ArvoreAVL.ArvoreAvl k1 = new ArvoreAVL.ArvoreAvl();
 
     public BuscaTuite() {
     }
     
     public BuscaTuite(SplayTree a, ArrayList<Tuite> lista){
         this.k = a;
+        this.listaAux = lista;
+    }
+    
+    public BuscaTuite(ArvoreAVL.ArvoreAvl a, ArrayList<Tuite> lista){
+        this.k1 = a;
+        this.listaAux = lista;
+    }
+     
+      public BuscaTuite(Rubro_Negra.RubroNegra a, ArrayList<Tuite> lista){
+        this.k2= a;
         this.listaAux = lista;
     }
             
