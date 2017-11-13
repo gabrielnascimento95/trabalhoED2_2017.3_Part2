@@ -109,8 +109,8 @@ public class RubroNegra {
             if (aComparar.getPai() == aComparar.getPai().getFesq()) {
                 y = aComparar.getPai().getPai().getFdir();
                 if (y.isCor()) { // caso 1 (tio Ã© vermelho):
-                    // muda a cor do pai e do tio para preto e dos avÃ³s para vermelho.
-                    // EntÃ£o, sobe dois nÃ­veis na Ã¡rvore.
+                    // muda a cor do pai e do tio para preto e dos avós para vermelho.
+                    // Entao, sobe dois níveis na arvore.
                     aComparar.getPai().setCor(false);
                     y.setCor(false);
                     aComparar.getPai().getPai().setCor(true);
@@ -154,8 +154,8 @@ public class RubroNegra {
         System.out.println("Raíz Preta ");
     }
 
-    // As rotaÃ§Ãµes (rotacao_esq e rotacao_dir) servem para manter o balanceamento da Ã¡rvore,
-// especialmente porque a Ã¡rvore preta e vermelha tem como caracterÃ­stica o balanceamento
+    // As rotações (rotacao_esq e rotacao_dir) servem para manter o balanceamento da árvore,
+// especialmente porque a árvore preta e vermelha tem como caracteristica o balanceamento
     private void rotacao_esq(No x) {
 
         No y = x.getFdir();
@@ -174,7 +174,7 @@ public class RubroNegra {
         y.setFesq(x);
         x.setPai(y);
     }
-// Ambas as rotaÃ§Ãµes sÃ£o idÃªnticas, sendo trocados apenas os "dir" e "esq", referentes a direita e esquerda
+// Ambas as rotações são idênticas, sendo trocados apenas os "dir" e "esq", referentes a direita e esquerda
 
     private void rotacao_dir(No x) {
         No y = x.getFesq();

@@ -230,11 +230,11 @@ public class ArvoreB {
                 this.raiz = pai.getFilho().get(0);
                 pai.getFilho().set(0, null);
             }
-        } else {//caso contrario(X nao Ã© raiz)
+        } else {//caso contrario(X nao é raiz)
             int t = (int) Math.floor((ordem - 1) / 2);
-            //verifica se o numero de chaves de X Ã© menor que o permitido
+            //verifica se o numero de chaves de X é menor que o permitido
             if (pai.getN() < t) {
-                P = getPai(raiz, pai);//P Ã© pai de X
+                P = getPai(raiz, pai);//P é pai de X
                 j = 1;
 
                 //adquire a posicao correta do filho X em P
@@ -242,7 +242,7 @@ public class ArvoreB {
                     j++;
                 }
 
-                //junta os nÃ³s
+                //junta os nós
                 if (j > 1) {
                     Juncao_No(getPai(raiz, pai), j - 1);
                 } else {
