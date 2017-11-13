@@ -15,18 +15,22 @@ public class SplayTree {
     private NoSplay raiz;
     private int contaNos = 0;
 
+    //Contrutor da classe splay tree
     public SplayTree() {
         this.raiz = null;
     }
     
+    //Função que verifica se a arvore está vazia ou não
     public boolean ehVazia(){
         return raiz == null;
     }
     
+    //Função que limpa a arvore, eliminando a raiz 
     public void limpaArvore(){
         raiz = null;
     }
     
+    //Função que insere um valor bigInteger (valor referente ao tweetID)
     public void insereElemento(BigInteger val){
         NoSplay aux = raiz;
         NoSplay aux2 = null;
@@ -49,7 +53,17 @@ public class SplayTree {
         fazSplay(aux);
         contaNos++;
     }
+    
+    //Função responsavel por deletar um nó da arvore
+    public void deletaNo(NoSplay k){
+        if(k != null){
+            deletaNo(k.getEsq());
+            deletaNo(k.getDir());
+            k = null;
+        }
+    }
 
+    //Função responsável por estabilizar a árvore e fazer o splay dos nós da mesma
     private void fazSplay(NoSplay aux) {
         while(aux.getPai() != null){
             NoSplay pai = aux.getPai();
@@ -82,6 +96,7 @@ public class SplayTree {
         raiz = aux;
     }
 
+    //Função responsável por fazer a rotação a direita
     private void rotacaoDireita(NoSplay a, NoSplay b) {
         if((a == null) || (b == null) || (b.getDir() != a) || (a.getPai() != b)){
             throw new Error("Erro");
@@ -102,6 +117,7 @@ public class SplayTree {
         a.setEsq(b);
     }
 
+    //Função responsável por fazer a rotação a esquerda
     private void rotacaoEsquerda(NoSplay a, NoSplay b) {
         if((a == null) || (b == null) || (b.getEsq() != a) || (a.getPai() != b)){
             throw new Error("Erro");
@@ -122,10 +138,12 @@ public class SplayTree {
         a.setDir(b);
     }
     
+    //Função que retorna o número de nós da arvore
     public int numNos(){
         return contaNos;
     }
     
+    //Função responsável por fazer uma busca na árvore baseado no tweetID passado (elencamos o mesmo como "chave primária")
     public String procuraElementoTweetID(BigInteger chave){
         if(procuraChave(chave) != null){
             return "Tweet Encontrado!";
@@ -134,6 +152,7 @@ public class SplayTree {
         }
     }
 
+    //Função privada auxilar que retorna os resultados da busca do elemento
     private NoSplay procuraChave(BigInteger chave) {
       NoSplay a = raiz;
       while(a != null){
@@ -147,10 +166,12 @@ public class SplayTree {
       return null;
     }
 
+    //Função que retorna a raiz da árvore
     public NoSplay getRaiz() {
         return raiz;
     }
 
+    //Função que altera a raiz caso seja necessário
     public void setRaiz(NoSplay raiz) {
         this.raiz = raiz;
     }
